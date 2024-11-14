@@ -2,8 +2,14 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        System.out.println(isPalindrome(1001));
+        System.out.println(isPerfectNumber(6));
+        System.out.println(numberToWords(1005));
+
     }
+
+
+
     public static boolean isPalindrome(int num) {
         int original = Math.abs(num) ;
         int reversed = 0;
@@ -81,7 +87,7 @@ public class Main {
             return 1;
         }
         if (num < 0) {
-            return -1; // Negatif sayılar için özel durum
+            return -1;
         }
         int count = 0;
         while (num > 0) {
