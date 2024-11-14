@@ -2,34 +2,28 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(isPalindrome(1001));
-        System.out.println(isPerfectNumber(6));
-        System.out.println(numberToWords(1005));
 
     }
 
 
 
     public static boolean isPalindrome(int num) {
-        int original = Math.abs(num) ;
-        int reversed = 0;
-        int temp = original;
-        while (temp != 0) {
-            int lastDigit = temp % 10;
-            reversed = reversed * 10 + lastDigit;
-            temp /= 10;
+      num = Math.abs(num);
+      char[] digits = String.valueOf(num).toCharArray();
+      String reversed = "";
+      for(int i = digits.length-1; i>= 0; i--){
+          reversed += digits[i];
+      }
+       return reversed.equalsIgnoreCase(String.valueOf(num));
 
 
-        }
-
-        return  original == reversed;
 
     }
     public static boolean isPerfectNumber(int num) {
 
-        if (num < 1) {
+        if (num < 0)
             return false;
-        }
+
 
         int sum = 0;
 
@@ -41,60 +35,51 @@ public class Main {
         }
 
 
-        return sum == num;
+        return num == sum;
     }
     public static String numberToWords(int num) {
-        if (num < 0) {
+        if (num < 0)
             return "Invalid Value";
-        }
+         char[] digits = String.valueOf(num).toCharArray();
+         String numToText = "";
+         for(char digit : digits) {
+             switch (digit) {
+                 case '0' :
+                     numToText += "Zero ";
+                     break;
+                 case '1' :
+                     numToText += "One ";
+                     break;
+                 case '2' :
+                     numToText += "Two ";
+                     break;
+                 case '3' :
+                     numToText += "Three ";
+                     break;
+                 case '4' :
+                     numToText += "Four ";
+                     break;
+                 case '5'  :
+                     numToText += "Five ";
+                     break;
+                 case '6' :
+                     numToText += "Six ";
+                     break;
+                 case '7' :
+                     numToText += "Seven ";
+                     break;
+                 case '8' :
+                     numToText += "Eight ";
+                     break;
+                 case '9' :
+                     numToText += "Nine ";
+                     break;
 
-        StringBuilder result = new StringBuilder();
-        int reversedNumber = reverse(num);
-        int digitCount = getDigitCount(num);
+             }
 
-        for (int i = 0; i < digitCount; i++) {
-            int lastDigit = reversedNumber % 10;
-            switch (lastDigit) {
-                case 0: result.append("Zero "); break;
-                case 1: result.append("One "); break;
-                case 2: result.append("Two "); break;
-                case 3: result.append("Three "); break;
-                case 4: result.append("Four "); break;
-                case 5: result.append("Five "); break;
-                case 6: result.append("Six "); break;
-                case 7: result.append("Seven "); break;
-                case 8: result.append("Eight "); break;
-                case 9: result.append("Nine "); break;
-            }
-            reversedNumber /= 10;
-        }
+         }
+        return numToText.trim();
 
-        return result.toString().trim();
-    }
-
-    public static int reverse(int num) {
-        int reversed = 0;
-        while (num != 0) {
-            int lastDigit = num % 10;
-            reversed = reversed * 10 + lastDigit;
-            num /= 10;
-        }
-        return reversed;
-    }
-
-    public static int getDigitCount(int num) {
-        if (num == 0) {
-            return 1;
-        }
-        if (num < 0) {
-            return -1;
-        }
-        int count = 0;
-        while (num > 0) {
-            count++;
-            num /= 10;
-        }
-        return count;
     }
 }
 
